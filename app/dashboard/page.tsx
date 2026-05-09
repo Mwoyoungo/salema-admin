@@ -17,6 +17,12 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [recentOrders, setRecentOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowWelcome(false), 4000);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -43,6 +49,23 @@ export default function DashboardPage() {
 
   return (
     <div>
+      {showWelcome && (
+        <div style={{
+          position: 'fixed', top: 24, right: 24, zIndex: 9999,
+          background: 'var(--primary)', color: '#000',
+          padding: '14px 20px', borderRadius: 12,
+          fontWeight: 700, fontSize: 14,
+          boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+          display: 'flex', alignItems: 'center', gap: 10,
+          animation: 'fadeIn 0.3s ease',
+        }}>
+          👋 Welcome to a new session — Salema Admin
+          <button onClick={() => setShowWelcome(false)} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: '#000', fontWeight: 900, fontSize: 16, lineHeight: 1,
+          }}>×</button>
+        </div>
+      )}
       <div className="page-header">
         <div>
           <div className="page-heading">Welcome back 👋</div>
