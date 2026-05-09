@@ -21,6 +21,7 @@ const NAV = [
     section: 'Operations',
     items: [
       { href: '/dashboard/orders', label: 'All Orders', icon: '📋' },
+      { href: '/dashboard/map', label: 'Live Map', icon: '📍' },
       { href: '/dashboard/danger-zones', label: 'Danger Zones', icon: '⚠' },
     ],
   },
